@@ -31,7 +31,9 @@ exports.addProduct = async (req, res) => {
     let newProduct = await tb_product.create({
       ...data,
       title: req.body.title,
+      desc: req.body.desc,
       price: req.body.price,
+      stock: req.body.stock,
       image: result.public_id,
       idUser: req.tb_user.id,
     });
