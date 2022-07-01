@@ -1,5 +1,6 @@
 const { tb_product, tb_user } = require("../../models");
 const cloudinary = require("../../utils/cloudinary");
+
 exports.addProduct = async (req, res) => {
   try {
     const productExist = await tb_product.findOne({
@@ -25,13 +26,12 @@ exports.addProduct = async (req, res) => {
       use_filename: true,
       unique_filename: false,
     });
+
     // code here
     let newProduct = await tb_product.create({
       ...data,
       title: req.body.title,
-      desc: req.body.desc,
       price: req.body.price,
-      stock: req.body.stock,
       image: result.public_id,
       idUser: req.tb_user.id,
     });
